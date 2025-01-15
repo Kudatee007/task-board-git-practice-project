@@ -86,6 +86,9 @@
             padding: 4px;
             margin-right: 10px;
         }
+        .task span {
+            width: 100%;
+        }
 
         .task button {
             background: #dc3545;
@@ -149,6 +152,7 @@
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
                     <span>${task.title}</span>
+                    <span>${task.dueDate || 'No due date'}</span>
                     <div>
                         <select onchange="moveTask(${task.id}, this.value)">
                             <option value="todo" ${task.status === 'todo' ? 'selected' : ''}>To Do</option>
@@ -195,7 +199,8 @@
                     const newTask = {
                         id: tasks.length + 1,
                         title: title,
-                        status: 'todo'
+                        status: 'todo',
+                        dueDate: dueDate || null
                     };
                     tasks.push(newTask);
                     input.value = '';
