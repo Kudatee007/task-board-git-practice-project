@@ -86,6 +86,9 @@
             padding: 4px;
             margin-right: 10px;
         }
+        .task span {
+            width: 100%;
+        }
 
         .task button {
             background: #dc3545;
@@ -138,9 +141,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let tasks = [
-                { id: 1, title: 'Learn Git Basics', status: 'todo' },
-                { id: 2, title: 'Create First PR', status: 'in-progress' },
-                { id: 3, title: 'Review Code', status: 'done' },
+                { id: 1, title: 'Learn Git Basics', status: 'todo', dueDate: '2025-01-20' },
+                { id: 2, title: 'Create First PR', status: 'in-progress', dueDate: '2025-01-20' },
+                { id: 3, title: 'Review Code', status: 'done', dueDate: '2025-01-20' },
+                { id: 4, title: 'Timilehin', status: 'todo', dueDate: '2025-01-20' },
             ];
 
             function createTaskElement(task) {
@@ -148,6 +152,7 @@
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
                     <span>${task.title}</span>
+                    <span>${task.dueDate || 'No due date'}</span>
                     <div>
                         <select onchange="moveTask(${task.id}, this.value)">
                             <option value="todo" ${task.status === 'todo' ? 'selected' : ''}>To Do</option>
@@ -194,7 +199,8 @@
                     const newTask = {
                         id: tasks.length + 1,
                         title: title,
-                        status: 'todo'
+                        status: 'todo',
+                        dueDate: dueDate || null
                     };
                     tasks.push(newTask);
                     input.value = '';
