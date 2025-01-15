@@ -152,7 +152,7 @@
                 taskDiv.className = 'task';
                 taskDiv.innerHTML = `
                     <span>${task.title}</span>
-                    <span>${task.dueDate || 'No due date'}</span>
+                    <span>Due: ${task.dueDate || 'No due date'}</span>
                     <div>
                         <select onchange="moveTask(${task.id}, this.value)">
                             <option value="todo" ${task.status === 'todo' ? 'selected' : ''}>To Do</option>
